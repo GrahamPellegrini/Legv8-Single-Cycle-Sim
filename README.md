@@ -16,71 +16,105 @@
 
 ## 🧠 Overview
 
-This project simulates a **single-cycle implementation** of the LEGv8 processor architecture as part of the University of Malta’s study unit [CCE2017](https://www.um.edu.mt/courses/studyunit/CCE2017). The simulator replicates the main datapath components and control logic, executing LEGv8 assembly instructions for:
+This repository contains a simulation of a **single-cycle processor architecture** based on the LEGv8 instruction set. Developed for the [CCE2017](https://www.um.edu.mt/courses/studyunit/CCE2017) unit at the University of Malta, the simulator was written in C++ to replicate the internal workings of a simplified RISC-style CPU.
 
-- **Arithmetic and Logical Operations**
-- **Data Transfer (Load/Store)**
-- **Branch Instructions**
-- **Bubble Sort Routine Simulation**
+### 🧩 Features Implemented
+- Instruction fetch from `.text` file
+- Data memory and register file setup with `.data` files
+- Control signal generation through a dedicated `ControlUnit` module
+- Handling of ALU operations and control logic
+- PC update via multiplexer logic (with flag support for branches)
+- Support for key LEGv8 instructions including `ADD`, `SUB`, `ADDI`, `LDURB`, `STURB`, `CBNZ`, `CBZ`, `B`, and `B.HS`
 
-Assembly test cases and outputs are provided across all key instruction classes.
-
-> 📘 Refer to the accompanying [report](CCE2017.pdf) for design rationale, component implementation details, and testing methodology.
+> 📘 For complete architectural details and diagrams, see the [`CCE2017.pdf`](Latex/CCE2017.pdf) report.
 
 ---
 
-## 🗂️ Repository Structure
+## 📁 Repository Structure
 
 ```bash
-.
-├── MNE2701_Legv8_Sim/               # Core C++ simulator source
-│   ├── ALU_Control.*                # ALU control unit
-│   ├── ALU.*                        # Arithmetic Logic Unit
-│   ├── ControlUnit.*               # Main control signal logic
-│   ├── DataMemory.*                # Memory read/write simulation
-│   ├── Instruction_*.cpp/.h        # Instruction decode and identification
-│   ├── Multiplexer modules         # Various signal selectors
-│   ├── Registers.*                 # Register file management
-│   ├── SignExtend.*                # Sign extension for immediates
-│   ├── MNE2701_Legv8_Sim.cpp       # Main simulator driver
-│   └── *.vcxproj / *.sln           # Visual Studio build files
-├── assembly_test/                  # Instruction class test programs
-│   ├── Arithmetic/                 # Arithmetic operations
-│   ├── Branch/                     # Conditional branching
-│   └── DataTransfer/              # Load/store tests
-├── bubble_sort/                    # LEGv8 assembly implementation of bubble sort
-├── .gitignore
-├── README.md
-└── CCE2017.pdf                     # 📄 Final course project report
+legv8-single-cycle-sim/
+├── MNE2701_Legv8_Sim/            # C++ source code for processor modules
+│   ├── ALU.cpp/.h                # Arithmetic Logic Unit
+│   ├── ControlUnit.cpp/.h       # Instruction decoder & signal generator
+│   ├── DataMemory.cpp/.h        # Memory read/write handling
+│   ├── Instruction_Memory.cpp/.h# Instruction fetch from file
+│   ├── Registers.cpp/.h         # Register file with XZR logic
+│   ├── Multiplexers/*.cpp/.h    # ALU/PC/Data/Reg2 multiplexers
+│   ├── SignExtend.cpp/.h        # Immediate value extender
+│   ├── Instruction_Identifier.cpp/.h
+│   ├── MNE2701_Legv8_Sim.cpp    # Main simulation loop
+│   └── MNE2701_Legv8_Sim.vcxproj
+├── assembly_test/                # Tests for arithmetic, branch, transfer
+│   ├── Arithemtic/
+│   ├── Branch/
+│   └── DataTransfer/
+├── bubble_sort/                  # Partial implementation of bubble sort
+├── Latex/                        # LaTeX report files and screenshots
+│   └── CCE2017.pdf
+└── README.md
 ```
 
 ---
 
-## ⚙️ Build & Run
+## ⚙️ Functional Components
 
-To compile and run the simulator:
+Each module plays a specific role in the simulation of the datapath:
 
-1. Ensure a C++17 compatible compiler is available (e.g. `g++`, MSVC).
-2. Compile all `.cpp` files inside `MNE2701_Legv8_Sim/`.
-3. Provide `.s`, `.data`, and `.text` files as input to simulate a test case.
+- `Instruction_Memory` – Loads `.text` file and handles instruction fetch
+- `ControlUnit` – Decodes opcode and sets all control signals
+- `Multiplexers` – Reg2, ALU, Data, and PC input selection
+- `Registers` – Handles register file read/write with XZR (X31 = 0)
+- `SignExtend` – Extends various immediate formats depending on instruction
+- `ALU_Control` – Selects operation based on ALUOp and funct fields
+- `ALU` – Executes arithmetic/logic ops, with support for SUBS and PASS flags
+- `DataMemory` – Loads `.data` into memory and performs memory access
 
-> Assembly input/output examples can be found under `assembly_test/` and `bubble_sort/` folders.
+All components are wired inside `MNE2701_Legv8_Sim.cpp`, which handles clocked execution, register/memory state updates, and output logging.
 
 ---
 
-## 🧪 Assembly Test Programs
+## 🧪 Test Cases
 
-Each test case includes:
-- `*.s`: Assembly code
-- `*.data`: Data section
-- `*.text`: Instruction section
-- `*.txt`: Expected output for validation
+The simulator was validated using three main categories:
 
-These span tests for:
-- **Arithmetic**: Basic math, register interactions
-- **Data Transfer**: Memory read/write correctness
-- **Branch**: Proper PC updates and condition handling
-- **Bubble Sort**: Algorithmic logic across memory
+- **Arithmetic**: Testing `ADD`, `SUB`, `ADDI`, `SUBI`
+- **Branching**: With `CBZ`, `CBNZ`, `B`, `B.HS`, `SUBS`
+- **Data Transfer**: With `LDURB`, `STURB`
+
+Each test folder contains:
+- `.s`: Assembly source
+- `.data`: Initial memory contents
+- `.text`: Instruction file
+- `.txt`: Expected output and register/memory state
+
+---
+
+## 🔁 Bubble Sort (Bonus Task)
+
+An attempt was made to implement a **bubble sort algorithm** using the supported instructions. Though the first iteration executes correctly, the loop fails to continue due to suspected PC multiplexer logic or branch condition error.
+
+> 📄 Output and source can be found under the `bubble_sort/` directory.
+
+---
+
+## ⚙️ Build Instructions
+
+To compile the simulator:
+```bash
+g++ -std=c++17 -I MNE2701_Legv8_Sim/ MNE2701_Legv8_Sim/*.cpp -o legv8_sim
+```
+To run a test case:
+```bash
+./legv8_sim
+```
+Edit hardcoded paths for `.data` and `.text` inside `DataMemory.cpp` and `Instruction_Memory.cpp` as needed.
+
+---
+
+## 📘 Report
+
+📄 Full documentation of architecture, modules, and testing is available at [`Latex/CCE2017.pdf`](Latex/CCE2017.pdf)
 
 ---
 
@@ -89,9 +123,3 @@ These span tests for:
 **Graham Pellegrini**  
 University of Malta – Department of Computer Engineering  
 GitHub: [@GrahamPellegrini](https://github.com/GrahamPellegrini)
-
----
-
-## 📘 Report
-
-📄 Full report available here: [`CCE2017.pdf`](CCE2017.pdf)
