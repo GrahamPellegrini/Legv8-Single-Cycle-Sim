@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{}%
+\contentsline {section}{\numberline {2}Implementation Details}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Main Class: MNE2701\_Legv8\_Sim}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Instruction Fetch and Execute Module: Instruction\_Memory}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Control Unit Module: ControlUnit}{5}{}%
+\contentsline {subsection}{\numberline {2.4}Multiplexer Modules}{5}{}%
+\contentsline {subsubsection}{\numberline {2.4.1}Reg2 Multiplexer}{5}{}%
+\contentsline {subsubsection}{\numberline {2.4.2}ALU Multiplexer}{6}{}%
+\contentsline {subsubsection}{\numberline {2.4.3}Data Multiplexer}{6}{}%
+\contentsline {subsubsection}{\numberline {2.4.4}PC Multiplexer}{6}{}%
+\contentsline {subsection}{\numberline {2.5}Register File Module: Registers}{6}{}%
+\contentsline {subsection}{\numberline {2.6}Sign Extend Module: SignExtend}{7}{}%
+\contentsline {subsection}{\numberline {2.7}ALU Control Module: ALU\_Control}{8}{}%
+\contentsline {subsection}{\numberline {2.8}ALU Module: ALU}{8}{}%
+\contentsline {subsection}{\numberline {2.9}Memory Access Module: DataMemory}{8}{}%
+\contentsline {section}{\numberline {3}Usage}{10}{}%
+\contentsline {section}{\numberline {4}Output}{10}{}%
+\contentsline {section}{\numberline {5}Testing}{10}{}%
+\contentsline {subsubsection}{\numberline {5.0.1}Arithmetic}{11}{}%
+\contentsline {subsubsection}{\numberline {5.0.2}Branch}{11}{}%
+\contentsline {subsubsection}{\numberline {5.0.3}DataTransfer}{11}{}%
+\contentsline {section}{\numberline {6}Bubble Sort}{12}{}%
+\contentsline {section}{\numberline {7}Documentation Of Copilot Use}{12}{}%
+\contentsline {section}{\numberline {8}Conclusion}{13}{}%
+\contentsline {section}{\numberline {9}Plagerism Form}{15}{}%
