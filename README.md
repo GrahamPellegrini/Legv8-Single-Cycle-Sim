@@ -14,11 +14,11 @@
 
 ---
 
-## 🧠 Overview
+## Overview
 
 This repository contains a simulation of a **single-cycle processor architecture** based on the LEGv8 instruction set. Developed for the [CCE2017](https://www.um.edu.mt/courses/studyunit/CCE2017) unit at the University of Malta, the simulator was written in C++ to replicate the internal workings of a simplified RISC-style CPU.
 
-### 🧩 Features Implemented
+### Features Implemented
 - Instruction fetch from `.text` file
 - Data memory and register file setup with `.data` files
 - Control signal generation through a dedicated `ControlUnit` module
@@ -29,7 +29,7 @@ This repository contains a simulation of a **single-cycle processor architecture
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```bash
 legv8-single-cycle-sim/
@@ -56,7 +56,7 @@ legv8-single-cycle-sim/
 
 ---
 
-## ⚙️ Functional Components
+## Functional Components
 
 Each module plays a specific role in the simulation of the datapath:
 
@@ -73,7 +73,7 @@ All components are wired inside `MNE2701_Legv8_Sim.cpp`, which handles clocked e
 
 ---
 
-## 🧪 Test Cases
+## Test Cases
 
 The simulator was validated using three main categories:
 
@@ -89,15 +89,15 @@ Each test folder contains:
 
 ---
 
-## 🔁 Bubble Sort (Bonus Task)
+## Bubble Sort (Bonus Task)
 
 An attempt was made to implement a **bubble sort algorithm** using the supported instructions. Though the first iteration executes correctly, the loop fails to continue due to suspected PC multiplexer logic or branch condition error.
 
-> 📄 Output and source can be found under the `bubble_sort/` directory.
+> Output and source can be found under the `bubble_sort/` directory.
 
 ---
 
-## ⚙️ Build Instructions
+## Build Instructions
 
 To compile the simulator:
 ```bash
@@ -111,13 +111,13 @@ Edit hardcoded paths for `.data` and `.text` inside `DataMemory.cpp` and `Instru
 
 ---
 
-## 📘 Report
+## Report
 
-📄 Full documentation of architecture, modules, and testing is available at [`Latex/CCE2017.pdf`](Latex/CCE2017.pdf)
+Full documentation of architecture, modules, and testing is available at [`Latex/CCE2017.pdf`](Latex/CCE2017.pdf)
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Graham Pellegrini**  
 University of Malta – Department of Computer Engineering  
