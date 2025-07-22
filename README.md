@@ -26,7 +26,6 @@ This repository contains a simulation of a **single-cycle processor architecture
 - PC update via multiplexer logic (with flag support for branches)
 - Support for key LEGv8 instructions including `ADD`, `SUB`, `ADDI`, `LDURB`, `STURB`, `CBNZ`, `CBZ`, `B`, and `B.HS`
 
-> 📘 For complete architectural details and diagrams, see the [`CCE2017.pdf`](Latex/CCE2017.pdf) report.
 
 ---
 
