@@ -1,0 +1,20 @@
+91 00 2b e0    // ADDI X0 XZR 10
+b4 00 02 40    // CBZ X0 exit
+91 00 03 e1    // ADDI X1 XZR 0
+14 00 00 01    // B inner_loop
+38 40 0c 22    // LDURB X2 X1
+38 40 1c 23    // LDURB X3 X1 1
+eb 03 00 44    // SUBS X4 X2 X3
+54 00 00 42    // B.HS swap
+14 00 00 04    // B inner_reloop
+38 00 10 22    // STURB X2 X1 1
+38 00 00 23    // STURB X3 X1
+14 00 00 01    // B inner_reloop
+91 00 04 21    // ADDI X1 X1 1
+d1 00 08 05    // SUBI X5 X0 2
+eb 01 00 a6    // SUBS X6 X5 X1
+54 ff fe a2    // B.HS inner_loop
+14 00 00 01    // B outer_reloop
+d1 00 04 00    // SUBI X0 X0 1
+17 ff ff ef    // B outer_loop
+14 00 00 00    // B exit

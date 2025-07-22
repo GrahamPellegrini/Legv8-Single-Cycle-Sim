@@ -1,0 +1,5 @@
+91 00 2b e0    // ADDI X0 XZR 10
+91 00 17 e1    // ADDI X1 XZR 5
+8b 01 00 02    // ADD X2 X0 X1
+d1 00 14 43    // SUBI X3 X2 5
+cb 01 00 04    // SUB X4 X0 X1

@@ -1,0 +1,6 @@
+91 00 07 e1    // ADDI X1 XZR 1
+91 00 0b e2    // ADDI X2 XZR 2
+38 00 13 e1    // STURB X1 XZR 1
+38 00 00 42    // STURB X2 X2
+38 40 0c 23    // LDURB X3 X1
+38 40 1c 24    // LDURB X4 X1 1

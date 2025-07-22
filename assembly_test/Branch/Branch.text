@@ -1,0 +1,17 @@
+91 00 17 e0    // ADDI X0 XZR 5
+91 00 2b e1    // ADDI X1 XZR 10
+91 00 3f e2    // ADDI X2 XZR 15
+14 00 00 01    // B UncondtionalB
+b4 00 00 a0    // CBZ X0 Wrong
+b5 00 00 83    // CBNZ X3 Wrong
+eb 01 00 04    // SUBS X4 X0 X1
+54 00 00 42    // B.HS Wrong
+b4 00 00 63    // CBZ X3 Good1
+91 00 81 08    // ADDI X8 X8 32
+b4 00 00 23    // CBZ X3 Good1
+91 00 07 e5    // ADDI X5 XZR 1
+b5 00 00 20    // CBNZ X0 Good2
+91 00 07 e6    // ADDI X6 XZR 1
+eb 01 00 44    // SUBS X4 X2 X1
+54 00 00 22    // B.HS Good3
+91 00 07 e7    // ADDI X7 XZR 1
